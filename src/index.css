@@ -299,7 +299,7 @@ article.active {
   position: relative;
   background: var(--border-gradient-onyx);
   padding: 15px;
-  padding-top: 45px;
+  padding-top: 38px;
   border-radius: 14px;
   box-shadow: var(--shadow-2);
   cursor: pointer;
@@ -339,7 +339,7 @@ main {
 
 .sidebar {
   margin-bottom: 15px;
-  max-height: 112px;
+  max-height: 120px;
   overflow: hidden;
   transition: var(--transition-2);
 }
@@ -358,7 +358,7 @@ main {
 
 .avatar-box {
   background: var(--bg-gradient-onyx);
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 
 .info-content .name {
@@ -649,6 +649,7 @@ main {
 
 .testimonials-item-title {
   margin-bottom: 7px;
+  margin-left: 85px;
 }
 
 .testimonials-text {
@@ -1462,7 +1463,7 @@ textarea.form-input::-webkit-resizer {
   }
 
   .sidebar.active {
-    max-height: 584px;
+    max-height: unset;
   }
 
   .sidebar-info {

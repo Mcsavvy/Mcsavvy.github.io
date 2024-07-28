@@ -30,7 +30,7 @@ function App() {
   }, [tab]);
 
   return (
-    <main className='pt-6 bg-smoky-black'>
+    <main className='pt-10 sm:pt-6 bg-smoky-black'>
       <Header info={info} />
       <Sidebar info={info} />
       <div className='main-content'>

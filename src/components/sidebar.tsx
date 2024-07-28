@@ -20,8 +20,8 @@ export default function Sidebar({info}: {info: MyInfo | null}) {
   return (
     <aside className={"sidebar" + (isOpen ? " active" : "")}>
       <div className="sidebar-info">
-        <figure className="avatar-box">
-          <img src={info?.displayPic} alt={fullName} width="80" />
+        <figure className="avatar-box rounded-2xl">
+          <img src={info?.displayPic} alt={fullName} className="rounded-xl" width="80" />
         </figure>
 
         <div className="info-content">

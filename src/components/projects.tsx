@@ -54,10 +54,13 @@ function Project({
 
           <img src={images[0]} alt={name} loading="lazy" />
         </figure>
-        <a className="flex items-center w-full gap-1" href={link || "#"}>
-          <h3 className="text-lg text-bold">{name}</h3>
-          <Link className="text-orange-yellow-crayola" size={15} />
-        </a>
+      </a>
+      <a
+        className="flex items-center justify-center w-full gap-1"
+        href={link || "#"}
+      >
+        <h3 className="text-lg text-bold">{name}</h3>
+        {/* <Link className="text-orange-yellow-crayola" size={15} /> */}
       </a>
     </li>
   );
@@ -129,7 +132,7 @@ function ProjectModal({
               <img
                 key={idx}
                 src={image}
-                className="w-96 rounded-sm"
+                className="w-96 h-auto rounded-sm"
                 alt={name}
               />
             ))}
@@ -137,13 +140,16 @@ function ProjectModal({
 
           <div className="modal-content">
             <h6 className="font-bold mt-2">Technologies</h6>
-            <ul className="flex gap-2 mt-1 mb-4">
+            <ul className="flex flex-wrap gap-2 mt-1 mb-4">
               {technologies.map((technology, idx) => (
                 <Badge key={idx}>{technology}</Badge>
               ))}
             </ul>
             <h6 className="font-bold mt-2">Description</h6>
-            <p className="mt-1 mb-4 text-xs">{description}</p>
+            <div
+              className="mt-1 mb-4 text-sm space-y-2 project-description"
+              dangerouslySetInnerHTML={{ __html: description }}
+            />
             <button className="text-black bg-[#ffdb70] focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-3 py-1.5 text-center me-2 mb-2">
               <a
                 href={link}
@@ -171,12 +177,13 @@ function FilterList({
   setSelectedCategory: (category: string) => void;
 }) {
   return (
-    <ul className={"filter-list"}>
+    <ul className={"filter-list text-nowrap flex-wrap"}>
       {categories.map((category, idx) => (
         <li className="filter-item" key={idx}>
           <button
             className={
-              "capitalize" + (category === selectedCategory ? " active" : "")
+              "capitalize px-1" +
+              (category === selectedCategory ? " active" : "")
             }
             onClick={() => {
               setSelectedCategory(category);
@@ -202,10 +209,13 @@ function FilterSelectBox({
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="filter-select-box">
-      <button className={"filter-select" + (isOpen ? " active" : "")} onClick={() => setIsOpen(!isOpen)}>
-        <div className="select-value">{
-          selectedCategory === null ? "Select category" : selectedCategory
-        }</div>
+      <button
+        className={"filter-select" + (isOpen ? " active" : "")}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div className="select-value">
+          {selectedCategory === null ? "Select category" : selectedCategory}
+        </div>
 
         <div className="select-icon">
           <ChevronDown size={24} />
@@ -220,8 +230,8 @@ function FilterSelectBox({
                 "capitalize" + (category === selectedCategory ? " active" : "")
               }
               onClick={() => {
-                setSelectedCategory(category)
-                setIsOpen(false)
+                setSelectedCategory(category);
+                setIsOpen(false);
               }}
             >
               {category}
@@ -281,7 +291,8 @@ export default function Projects({ isActive }: { isActive: boolean }) {
           {projects
             .filter(
               (project) =>
-                selectedCategory === "All" || selectedCategory === null ||
+                selectedCategory === "All" ||
+                selectedCategory === null ||
                 project.tags.includes(selectedCategory)
             )
             .map((project, idx) => (

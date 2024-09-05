@@ -192,7 +192,7 @@ export default function About({
       />
 
       <Services />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Clients />
     </article>
   );
